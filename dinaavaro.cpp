@@ -19,7 +19,7 @@ void espacio() { //Complejidad Computacional O(1).
 //Definir breve explicación y firma de la función --- PENDIENTE DE DESARROLLO. 
 void dynamic() { //PENDIENTE DE COMPLEJIDAD !!!!!!
 	espacio();
-	cout << "en desarollo.." << endl;//PENDIENTE DE DESARROLLO
+	cout << "en desarrollo..." << endl;//PENDIENTE DE DESARROLLO
 	espacio();
 }
 
