@@ -18,30 +18,33 @@ void espacio() { //Complejidad Computacional O(1).
 
 //Función que implementa programación dinámica con el fin de dar la cantidad de posibilidades de cambio, recibe un vector de enteros con las posibles denominaciones de vuelto, un entero con el precio del producto y un entero con el valor del billete/moneda de pago. No tiene valor de retorno.
 void dynamic(vector<int> denominaciones, int p, int q) { //Complejidad computacional O(nm), siendo n la cantidad de denominaciones, y siendo m la cantidad de posibilidades. 
-	
+
+	//Declaración/Inicialización de variables.
 	int cambio;
 	cambio = q - p;
-
-	sort(denominaciones.begin(), denominaciones.end());
-
 	vector <int> formas(cambio + 1);
-
 	formas[0] = 1;
 
+	//Ordenamiento del vector con las denominaciones.
+	sort(denominaciones.begin(), denominaciones.end());
+	
+	//Busqueda de posibles combinaciones.
+
+	//Recorrido de denominaciones. 
 	for (int i = 0; i < denominaciones.size(); i++) {
 
+		//Recorrido de comparación contra el valor de las denominaciones. 
 		for (int j = 0; j < formas.size(); j++) {
 
 			if (denominaciones[i] <= j) {
 				formas[j] += formas[(j - denominaciones[i])];
 			}
-
 		}
-
 	}
 
+	//Muestra de resultado. 
 	cout << "SE TIENE LA SIGUIENTE CANTIDAD DE POSIBILIDADES PARA DEVOLVER CAMBIO: " << endl;
-	cout << formas[cambio] << "formas" << endl;
+	cout << formas[cambio] << " formas posibles." << endl;
 }
 
 //Función que implementa un algoritmo avaro con el fin de dar el mínimo de monedas de cambio, recibe un vector de enteros con las posibles denominaciones de vuelto, un entero con el precio del producto y un entero con el valor del billete/moneda de pago. No tiene valor de retorno.
