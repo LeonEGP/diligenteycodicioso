@@ -30,10 +30,9 @@ void dynamic(vector<int> denominaciones, int p, int q) { //Complejidad computaci
 	
 	//Busqueda de posibles combinaciones.
 
-	//Recorrido de denominaciones. 
+	//Doble ciclo for para recorrido de denominaciones y comparación.
 	for (int i = 0; i < denominaciones.size(); i++) {
 
-		//Recorrido de comparación contra el valor de las denominaciones. 
 		for (int j = 0; j < formas.size(); j++) {
 
 			if (denominaciones[i] <= j) {
