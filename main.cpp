@@ -16,22 +16,45 @@ void espacio() { //Complejidad Computacional O(1).
 	cout << endl;
 }
 
-//Definir breve explicación y firma de la función --- PENDIENTE DE DESARROLLO. 
-void dynamic() { //PENDIENTE DE COMPLEJIDAD !!!!!!
-	espacio();
-	cout << "en desarollo.." << endl;//PENDIENTE DE DESARROLLO
-	espacio();
+//Función que implementa programación dinámica con el fin de dar la cantidad de posibilidades de cambio, recibe un vector de enteros con las posibles denominaciones de vuelto, un entero con el precio del producto y un entero con el valor del billete/moneda de pago. No tiene valor de retorno.
+void dynamic(vector<int> denominaciones, int p, int q) { //Complejidad computacional O(nm), siendo n la cantidad de denominaciones, y siendo m la cantidad de posibilidades. 
+
+	//Declaración/Inicialización de variables.
+	int cambio;
+	cambio = q - p;
+	vector <int> formas(cambio + 1);
+	formas[0] = 1;
+
+	//Ordenamiento del vector con las denominaciones.
+	sort(denominaciones.begin(), denominaciones.end());
+	
+	//Busqueda de posibles combinaciones.
+
+	//Doble ciclo for para recorrido de denominaciones y comparación.
+	for (int i = 0; i < denominaciones.size(); i++) {
+
+		for (int j = 0; j < formas.size(); j++) {
+
+			if (denominaciones[i] <= j) {
+				formas[j] += formas[(j - denominaciones[i])];
+			}
+		}
+	}
+
+	//Muestra de resultado. 
+	cout << "SE TIENE LA SIGUIENTE CANTIDAD DE POSIBILIDADES PARA DEVOLVER CAMBIO: " << endl;
+	cout << formas[cambio] << " formas posibles." << endl;
 }
 
-//Función que implemento un algoritmo avaro con el fin de dar el mínimo de monedas de cambio, recibe un vector de enteros con las posibles denominaciones de vuelto, un entero con el precio del producto y un entero con el valor del billete/moneda de pago.
+//Función que implementa un algoritmo avaro con el fin de dar el mínimo de monedas de cambio, recibe un vector de enteros con las posibles denominaciones de vuelto, un entero con el precio del producto y un entero con el valor del billete/moneda de pago. No tiene valor de retorno.
 void greedy(vector<int> denominaciones, int p, int q) { //Complejidad computacional O(n), siendo n el número de denominaciones. 
-	
+
 	//Declaración/Inicialización de variables.
 	int cambio;
 	int cambioOriginal;
 	int contador;
 	vector <int> vuelto;
-	
+
 	cambio = q - p;
 	cambioOriginal = cambio;
 
@@ -106,7 +129,7 @@ int main() { //Complejidad Computacional O(1).
 	cout << "Favor de ingresar el valor del billete / moneda de pago: " << endl;
 	cin >> q;
 
-		// ---------- DETECCIÓN DE ERRORES PROGRAMA ---------- //
+	// ---------- DETECCIÓN DE ERRORES PROGRAMA ---------- //
 
 	if (q < p) {
 		espacio();
@@ -121,7 +144,7 @@ int main() { //Complejidad Computacional O(1).
 
 	espacio();
 
-	dynamic(); //SOLUCIÓN POR PROGRAMACIÓN DINÁMICA --- PENDIENTE DESARROLLO
+	dynamic(denominaciones, p, q); //SOLUCIÓN POR PROGRAMACIÓN DINÁMICA --- PENDIENTE DESARROLLO
 
 	espacio();
 
